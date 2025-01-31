@@ -16,13 +16,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    clickDestination = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-        //    toDestination.z = 0;
-        //    moving = true;
-        //}
-
         toDestination = clickDestination - transform.position;
 
         if(moving)

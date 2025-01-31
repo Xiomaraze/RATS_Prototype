@@ -25,11 +25,6 @@ public class ClickableArea : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
         Debug.Log("on mouse down being called");
