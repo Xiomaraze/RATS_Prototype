@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {        
-        clickDestination = transform.position; //makes the first destination the current position    
+        clickDestination = transform.position; //makes the first destination the current position
     }
 
     void Update()

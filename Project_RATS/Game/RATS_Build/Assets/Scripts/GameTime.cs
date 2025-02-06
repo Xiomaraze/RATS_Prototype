@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Time : MonoBehaviour
+public class GameTime : MonoBehaviour
 {
     public GameObject playerHUD;
     public Canvas canvas;
@@ -16,9 +16,9 @@ public class Time : MonoBehaviour
     public GameObject tempDusk; //switches to night at 8 pm
     public GameObject tempNight;
 
-    
 
-    enum CurrentTime {EightAM, NineAM, TenAM, ElevenAM, Noon, OnePM, TwoPM, ThreePM, FourPM, FivePM, SixPM, SevenPM, EightPM, NinePM, TenPM, ElevenPM, Midnight};
+
+    enum CurrentTime { EightAM, NineAM, TenAM, ElevenAM, Noon, OnePM, TwoPM, ThreePM, FourPM, FivePM, SixPM, SevenPM, EightPM, NinePM, TenPM, ElevenPM, Midnight };
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class Time : MonoBehaviour
         clockText = playerHUD.GetComponent<TextMeshProUGUI>();
     }
 
-    public void XHoursLater (int hours)
+    public void XHoursLater(int hours)
     {
         switch (hours)
         {
@@ -75,7 +75,7 @@ public class Time : MonoBehaviour
         }
     }
 
-    void HourManagement ()
+    void HourManagement()
     {
         switch (hour) //this will handle active changes between hours
         {
