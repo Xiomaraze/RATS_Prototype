@@ -19,7 +19,8 @@ public class ClickableArea : MonoBehaviour
     void Start()
     {
         playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-        if(GetComponent<InteractableItem>() != null)
+        
+        if(GetComponent<DialogueController>() != null || GetComponent<InteractableItem>() != null)
         {
             hasAction = true;
         }
@@ -27,21 +28,25 @@ public class ClickableArea : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("on mouse down being called");
-        Debug.Log(destinationPos);
-        if (isFloor)
-        {
-            destinationPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-        }
-        else
-        {
-            destinationPos = destinationTransform.position;
-        }
+        //Debug.Log("on mouse down being called");
+        //Debug.Log(destinationPos);
+        if(PlayerController.currentState == PlayerController.States.nothing)
+        { 
+            if (isFloor)
+            {
+                destinationPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+            }
+            else
+            {
+                destinationPos = destinationTransform.position;
+            }
 
-        destinationPos.z = 0;
-        if(hasAction)
-        {
-            playerScript.MoveToAndAct(destinationPos, gameObject);
-        } else playerScript.MoveTo(destinationPos);
+            destinationPos.z = 0;
+            if(hasAction)
+            {
+                playerScript.MoveToAndAct(destinationPos, gameObject);
+            } else playerScript.MoveTo(destinationPos);
+
+        }
     }
 }

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private bool moving;
+    public enum States { moving, talking, nothing };
+    public static States currentState;
+
     
     [SerializeField]
     private float moveSpeed;
@@ -13,12 +17,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 toDestination;
 
     InteractableItem currentAction;
+    DialogueController currentDialogue;
+
+    private void Start()
+    {
+        clickDestination = transform.position;    
+    }
 
     void Update()
     {
+        Debug.Log(currentState);
         toDestination = clickDestination - transform.position;
 
-        if(moving)
+        if(currentState == States.moving)
         {
             transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed);
             if(toDestination.magnitude < .2f)
@@ -27,7 +38,12 @@ public class PlayerController : MonoBehaviour
                 {
                     currentAction.SpecialAction();
                 }
-                moving = false;
+                if(currentDialogue != null)
+                {
+                    currentDialogue.StartDialogue();
+                    currentState = States.talking;
+                }
+                else currentState = States.nothing;
             }
         }
 
@@ -35,17 +51,22 @@ public class PlayerController : MonoBehaviour
 
     public void MoveTo(Vector3 destinationPos)
     {
-        if (!moving)
-        {
-            clickDestination = destinationPos;
-            moving = true;
-        }
+        clickDestination = destinationPos;
+        currentState = States.moving;
         currentAction = null;
+        currentDialogue = null;
     }
-
+    
     public void MoveToAndAct(Vector3 destinationPos, GameObject clickedObject)
     {
         MoveTo(destinationPos);
-        currentAction = clickedObject.GetComponent<InteractableItem>();
+        if (clickedObject.GetComponent<InteractableItem>() != null)
+        {
+            currentAction = clickedObject.GetComponent<InteractableItem>();
+        }
+        else if (clickedObject.GetComponent<DialogueController>() != null)
+        {
+            currentDialogue = clickedObject.GetComponent<DialogueController>();
+        }
     }
 }
