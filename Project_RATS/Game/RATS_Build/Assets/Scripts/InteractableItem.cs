@@ -5,12 +5,6 @@ using UnityEngine;
 public class InteractableItem : MonoBehaviour
 {
     private Rigidbody2D itemRB;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void SpecialAction()
     {
         itemRB = GetComponent<Rigidbody2D>();

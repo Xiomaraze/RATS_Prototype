@@ -1741,8 +1741,9 @@ MonoBehaviour:
   textComponent: {fileID: 1333958029}
   lines:
   - Who are you?
-  - asdasdadasdasdasdasdasdasdasd
-  - asdasdasdasdasdgdfhhfgjgjnnnngfngfnnfnfnngfnfng
+  - I've never seen you in town before.
+  - Do you happen to be John's sister? He said you'd be visiting soon, but I didn't
+    believe him...
   textSpeed: 0.1
 --- !u!114 &1537024936
 MonoBehaviour:

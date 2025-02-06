@@ -28,8 +28,6 @@ public class ClickableArea : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //Debug.Log("on mouse down being called");
-        //Debug.Log(destinationPos);
         if(PlayerController.currentState == PlayerController.States.nothing)
         { 
             if (isFloor)
