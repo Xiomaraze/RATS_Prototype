@@ -7,7 +7,7 @@ using static DaySlot;
 public class NPCDialogueTester : MonoBehaviour
 {
     public GameObject hourManager;
-    Time hourScript;
+    GameTime hourScript;
     public Canvas canvas;
     public TextMeshProUGUI npcTalkBox;
     DialogueSystem npcDialogue;
@@ -16,27 +16,27 @@ public class NPCDialogueTester : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hourScript = hourManager.GetComponent<Time>();
+        hourScript = hourManager.GetComponent<GameTime>();
         npcDialogue = gameObject.GetComponent<DialogueSystem>();
     }
     public void Talk()
     {
-        if (hourScript.WhatTime() == 0)
-        {
-            npcDialogue.GetLine(DaySlot.hour.EarlyDay);
-        }
-        else if (hourScript.WhatTime() == 1)
-        {
-            npcDialogue.GetLine(DaySlot.hour.LateDay);
-        }
-        else if (hourScript.WhatTime() == 2)
-        {
-            npcDialogue.GetLine(DaySlot.hour.EarlyNight);
-        }
-        else
-        {
-            npcDialogue.GetLine(DaySlot.hour.LateNight);
-        }
+        //if (hourScript.WhatTime() == 0)
+        //{
+        //    npcDialogue.GetLine(DaySlot.hour.EarlyDay);
+        //}
+        //else if (hourScript.WhatTime() == 1)
+        //{
+        //    npcDialogue.GetLine(DaySlot.hour.LateDay);
+        //}
+        //else if (hourScript.WhatTime() == 2)
+        //{
+        //    npcDialogue.GetLine(DaySlot.hour.EarlyNight);
+        //}
+        //else
+        //{
+        //    npcDialogue.GetLine(DaySlot.hour.LateNight);
+        //}
     }
 
     // Update is called once per frame

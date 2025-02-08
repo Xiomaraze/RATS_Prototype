@@ -5,21 +5,22 @@ using TMPro;
 
 public class GameTime : MonoBehaviour
 {
-    public GameObject hudClockObject;
+    public GameObject playerHUD;
     public Canvas canvas;
     TextMeshProUGUI clockText;
     CurrentTime currentHour;
     public GameObject tempDay; //switches to night at 5 pm
+    public GameObject tempDusk; //switches to day at 10 pm
     public GameObject tempNight;
 
 
-    enum CurrentTime {Noon, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, ResetHour}
-    //enum CurrentTime { EightAM, NineAM, TenAM, ElevenAM, Noon, OnePM, TwoPM, ThreePM, FourPM, FivePM, SixPM, SevenPM, EightPM, NinePM, TenPM, ElevenPM, Midnight };
+
+    enum CurrentTime {Noon, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, ResetHour};
     // Start is called before the first frame update
     void Start()
     {
         currentHour = CurrentTime.Noon;
-        clockText = hudClockObject.GetComponent<TextMeshProUGUI>();
+        clockText = playerHUD.GetComponent<TextMeshProUGUI>();
     }
 
     public void XHoursLater(int hours)
@@ -39,24 +40,30 @@ public class GameTime : MonoBehaviour
                 }
                 currentHour = currentHour + 1;
                 break;
-            case 4:
-                int tempPassage = 4;
-                if (currentHour >= CurrentTime.Six)
-                {
-                    int tempHolder = 10;
-                    tempHolder = tempHolder - ((int)currentHour);
-                    tempPassage = tempPassage - tempHolder;
-                    currentHour = CurrentTime.Noon;
-                    tempNight.SetActive(false);
-                    tempDay.SetActive(true);
-                }
-                else if (currentHour >= CurrentTime.One)
-                {
-                    tempDay.SetActive(false);
-                    tempNight.SetActive(true);
-                }
-                currentHour += tempPassage;
-                break;
+            //case 4:
+            //    if ((currentHour >= CurrentTime.EightPM))
+            //    {
+            //        tempNight.SetActive(false);
+            //        tempDay.SetActive(true);
+            //        currentHour = CurrentTime.EightAM;
+            //    }
+            //    else if ((currentHour >= CurrentTime.OnePM) && (currentHour <= CurrentTime.ThreePM))
+            //    {
+            //        tempDay.SetActive(false);
+            //        tempDusk.SetActive(true);
+            //        currentHour = currentHour + 4;
+            //    }
+            //    else if (currentHour >= CurrentTime.FourPM)
+            //    {
+            //        tempDusk.SetActive(false);
+            //        tempNight.SetActive(true);
+            //        currentHour = currentHour + 4;
+            //    }
+            //    else
+            //    {
+            //        currentHour = currentHour + 4;
+            //    }
+                //break;
         }
     }
 
@@ -106,8 +113,7 @@ public class GameTime : MonoBehaviour
                 break;
             case CurrentTime.Ten:
                 break;
-            case CurrentTime.ResetHour: //this is specifically if we want to have some sort of animation to indicate a clock reset
-                currentHour = CurrentTime.Noon;
+            case CurrentTime.ResetHour:
                 break;
         }
         clockText.text = currentHour.ToString();

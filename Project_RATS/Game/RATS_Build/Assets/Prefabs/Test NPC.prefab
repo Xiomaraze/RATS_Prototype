@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1684612829376525063}
   - component: {fileID: 6065199053327470237}
-  - component: {fileID: 6564279679444972487}
-  - component: {fileID: 8512009323186883661}
-  - component: {fileID: 6389175346450024516}
   m_Layer: 0
   m_Name: Test NPC
   m_TagString: Untagged
@@ -87,51 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6564279679444972487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4311650730993298969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e23a7fd4a3ff5b419862b6ce5ca0dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lines:
-  - Test Early Morning
-  - Test Late Morning
-  - Test Early Night
-  - Test Late Night
-  time:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &8512009323186883661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4311650730993298969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25509a49bb2eb7444b6d281e6822ebff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6389175346450024516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4311650730993298969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600d9930836be8e48b470ab7124bbe43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hourManager: {fileID: 0}
-  canvas: {fileID: 0}

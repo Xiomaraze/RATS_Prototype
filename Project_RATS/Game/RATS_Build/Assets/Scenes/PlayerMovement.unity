@@ -516,10 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFloor: 0
-  hasAction: 0
   destinationTransform: {fileID: 872251175}
-  destinationPos: {x: 0, y: 0, z: 0}
-  playerScript: {fileID: 0}
 --- !u!4 &396106626
 Transform:
   m_ObjectHideFlags: 0
@@ -1014,10 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFloor: 1
-  hasAction: 0
   destinationTransform: {fileID: 0}
-  destinationPos: {x: 0, y: 0, z: 0}
-  playerScript: {fileID: 0}
 --- !u!1 &1278180637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,10 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFloor: 0
-  hasAction: 0
   destinationTransform: {fileID: 560995335}
-  destinationPos: {x: 0, y: 0, z: 0}
-  playerScript: {fileID: 0}
 --- !u!61 &1278180642
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1156,7 +1147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ed41409bf65f349b66eabef3d861bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemRB: {fileID: 0}
 --- !u!1 &1333958027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,10 +1313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  clickDestination: {x: 0, y: 0, z: 0}
-  toDestination: {x: 0, y: 0, z: 0}
-  currentAction: {fileID: 0}
-  currentDialogue: {fileID: 0}
 --- !u!4 &1395869780
 Transform:
   m_ObjectHideFlags: 0
@@ -1759,8 +1745,6 @@ MonoBehaviour:
   - Do you happen to be John's sister? He said you'd be visiting soon, but I didn't
     believe him...
   textSpeed: 0.1
-  index: 0
-  dialogueBox: {fileID: 0}
 --- !u!114 &1537024936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,10 +1758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFloor: 0
-  hasAction: 0
   destinationTransform: {fileID: 693306148}
-  destinationPos: {x: 0, y: 0, z: 0}
-  playerScript: {fileID: 0}
 --- !u!1 &1603267791
 GameObject:
   m_ObjectHideFlags: 0
