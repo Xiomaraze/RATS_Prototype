@@ -60,6 +60,26 @@ public class GameTime : MonoBehaviour
         }
     }
 
+    public DaySlot.hour WhatTimeIsIt()
+    {
+        if ((currentHour >= CurrentTime.Noon) && (currentHour < CurrentTime.Three))
+        {
+            return DaySlot.hour.EarlyDay;
+        }
+        else if ((currentHour >= CurrentTime.Three) && (currentHour < CurrentTime.Five))
+        {
+            return DaySlot.hour.LateDay;
+        }
+        else if ((currentHour >= CurrentTime.Five) && (currentHour < CurrentTime.Seven))
+        {
+            return DaySlot.hour.EarlyNight;
+        }
+        else
+        {
+            return DaySlot.hour.LateNight;
+        }
+    }
+
     void HourManagement()
     {
         switch (currentHour) //this will handle active changes between hours
