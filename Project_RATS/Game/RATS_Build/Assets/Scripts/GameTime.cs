@@ -10,8 +10,7 @@ public class GameTime : MonoBehaviour
     TextMeshProUGUI clockText;
     CurrentTime currentHour;
     public GameObject tempDay; //switches to night at 5 pm
-    public GameObject tempDusk; //switches to day at 10 pm
-    public GameObject tempNight;
+    public GameObject tempNight;//switches to day at 10 pm
 
 
 
@@ -40,30 +39,29 @@ public class GameTime : MonoBehaviour
                 }
                 currentHour = currentHour + 1;
                 break;
-            //case 4:
-            //    if ((currentHour >= CurrentTime.EightPM))
-            //    {
-            //        tempNight.SetActive(false);
-            //        tempDay.SetActive(true);
-            //        currentHour = CurrentTime.EightAM;
-            //    }
-            //    else if ((currentHour >= CurrentTime.OnePM) && (currentHour <= CurrentTime.ThreePM))
-            //    {
-            //        tempDay.SetActive(false);
-            //        tempDusk.SetActive(true);
-            //        currentHour = currentHour + 4;
-            //    }
-            //    else if (currentHour >= CurrentTime.FourPM)
-            //    {
-            //        tempDusk.SetActive(false);
-            //        tempNight.SetActive(true);
-            //        currentHour = currentHour + 4;
-            //    }
-            //    else
-            //    {
-            //        currentHour = currentHour + 4;
-            //    }
-                //break;
+            case 4:
+                int passageHolder = 4;
+                if (currentHour == CurrentTime.Six)
+                {
+                    tempNight.SetActive(false);
+                    tempDay.SetActive(true);
+                    currentHour = CurrentTime.Noon;
+                    passageHolder = 0;
+                }
+                else if (currentHour > CurrentTime.Six) 
+                {
+                    int hoursLeft = 10;
+                    hoursLeft = hoursLeft - ((int)currentHour);
+                    passageHolder = passageHolder - hoursLeft;
+                    currentHour = CurrentTime.Noon;
+                }
+                else if (currentHour >= CurrentTime.Two)
+                {
+                    tempDay.SetActive(false);
+                    tempNight.SetActive(true);
+                }
+                currentHour += passageHolder;
+                break;
         }
     }
 
