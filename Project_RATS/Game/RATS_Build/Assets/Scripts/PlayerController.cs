@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
         if(currentState == States.moving) //if the player is currently moving
         {
-            ////////////////////////////transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed); //move logic fix missing deltaTime definitions
+            transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed); //move logic fix missing deltaTime definitions
             if(toDestination.magnitude < .2f) //if reached the goal
             {
                 if(currentAction != null)
