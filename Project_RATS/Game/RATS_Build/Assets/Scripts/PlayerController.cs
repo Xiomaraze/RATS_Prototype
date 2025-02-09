@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {        
-        clickDestination = transform.position; //makes the first destination the current position
+        clickDestination = transform.position; //makes the first destination the current position    
     }
 
     void Update()
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
         if(currentState == States.moving) //if the player is currently moving
         {
-            transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed); //move logic
+            transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed); //move logic fix missing deltaTime definitions
             if(toDestination.magnitude < .2f) //if reached the goal
             {
                 if(currentAction != null)
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if(currentDialogue != null)
                 {
-                    currentDialogue.StartDialogue(); //begin a conversation if it has one
+                    //currentDialogue.StartDialogue(); //begin a conversation if it has one
                     currentState = States.talking; //switch player-state to 'talking'
                 }
                 else currentState = States.nothing; //if the goal is reached and there's nothing for the player to do, just set state back to regular

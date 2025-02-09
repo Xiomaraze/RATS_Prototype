@@ -5,25 +5,21 @@ using TMPro;
 
 public class GameTime : MonoBehaviour
 {
-    public GameObject playerHUD;
+    public GameObject clockHUDObject;
     public Canvas canvas;
     TextMeshProUGUI clockText;
-    CurrentTime hour;
-    public bool day;
-    public bool dusk;
-    public bool night;
-    public GameObject tempDay; //switches to dusk at 5 pm
-    public GameObject tempDusk; //switches to night at 8 pm
-    public GameObject tempNight;
+    CurrentTime currentHour;
+    public GameObject tempDay; //switches to night at 5 pm
+    public GameObject tempNight;//switches to day at 10 pm
 
 
 
-    enum CurrentTime { EightAM, NineAM, TenAM, ElevenAM, Noon, OnePM, TwoPM, ThreePM, FourPM, FivePM, SixPM, SevenPM, EightPM, NinePM, TenPM, ElevenPM, Midnight };
+    enum CurrentTime {Noon, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, ResetHour};
     // Start is called before the first frame update
     void Start()
     {
-        hour = CurrentTime.EightAM;
-        clockText = playerHUD.GetComponent<TextMeshProUGUI>();
+        currentHour = CurrentTime.Noon;
+        clockText = clockHUDObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void XHoursLater(int hours)
@@ -31,141 +27,94 @@ public class GameTime : MonoBehaviour
         switch (hours)
         {
             case 1:
-                if (hour == CurrentTime.FivePM)
+                if (currentHour == CurrentTime.Five)
                 {
                     tempDay.SetActive(false);
-                    tempDusk.SetActive(true);
-                }
-                else if (hour == CurrentTime.EightPM)
-                {
-                    tempDusk.SetActive(false);
                     tempNight.SetActive(true);
                 }
-                else if (hour == CurrentTime.ElevenPM)
+                else if (currentHour == CurrentTime.Ten)
                 {
                     tempNight.SetActive(false);
                     tempDay.SetActive(true);
                 }
-                hour = hour + 1;
+                currentHour = currentHour + 1;
                 break;
             case 4:
-                if ((hour >= CurrentTime.EightPM))
+                int passageHolder = 4;
+                if (currentHour == CurrentTime.Six)
                 {
                     tempNight.SetActive(false);
                     tempDay.SetActive(true);
-                    hour = CurrentTime.EightAM;
+                    currentHour = CurrentTime.Noon;
+                    passageHolder = 0;
                 }
-                else if ((hour >= CurrentTime.OnePM) && (hour <= CurrentTime.ThreePM))
+                else if (currentHour > CurrentTime.Six) 
+                {
+                    int hoursLeft = 10;
+                    hoursLeft = hoursLeft - ((int)currentHour);
+                    passageHolder = passageHolder - hoursLeft;
+                    currentHour = CurrentTime.Noon;
+                }
+                else if (currentHour >= CurrentTime.Two)
                 {
                     tempDay.SetActive(false);
-                    tempDusk.SetActive(true);
-                    hour = hour + 4;
-                }
-                else if (hour >= CurrentTime.FourPM)
-                {
-                    tempDusk.SetActive(false);
                     tempNight.SetActive(true);
-                    hour = hour + 4;
                 }
-                else
-                {
-                    hour = hour + 4;
-                }
+                currentHour += passageHolder;
                 break;
+        }
+    }
+
+    public DaySlot.hour WhatTimeIsIt()
+    {
+        if ((currentHour >= CurrentTime.Noon) && (currentHour < CurrentTime.Three))
+        {
+            return DaySlot.hour.EarlyDay;
+        }
+        else if ((currentHour >= CurrentTime.Three) && (currentHour < CurrentTime.Five))
+        {
+            return DaySlot.hour.LateDay;
+        }
+        else if ((currentHour >= CurrentTime.Five) && (currentHour < CurrentTime.Seven))
+        {
+            return DaySlot.hour.EarlyNight;
+        }
+        else
+        {
+            return DaySlot.hour.LateNight;
         }
     }
 
     void HourManagement()
     {
-        switch (hour) //this will handle active changes between hours
+        switch (currentHour) //this will handle active changes between hours
         {
-            case CurrentTime.EightAM:
-                day = true;
-                night = false;
-                dusk = false;
-                break;
-            case CurrentTime.NineAM:
-                day = true;
-                night = false;
-                dusk = false;
-                break;
-            case CurrentTime.TenAM:
-                day = true;
-                night = false;
-                dusk = false;
-                break;
-            case CurrentTime.ElevenAM:
-                day = true;
-                night = false;
-                dusk = false;
-                break;
             case CurrentTime.Noon:
-                day = true;
-                night = false;
-                dusk = false;
                 break;
-            case CurrentTime.OnePM:
-                day = true;
-                night = false;
-                dusk = false;
+            case CurrentTime.One:
                 break;
-            case CurrentTime.TwoPM:
-                day = true;
-                night = false;
-                dusk = false;
+            case CurrentTime.Two:
                 break;
-            case CurrentTime.ThreePM:
-                day = true;
-                night = false;
-                dusk = false;
+            case CurrentTime.Three:
                 break;
-            case CurrentTime.FourPM:
-                day = true;
-                night = false;
-                dusk = false;
+            case CurrentTime.Four:
                 break;
-            case CurrentTime.FivePM:
-                day = false;
-                dusk = true;
-                night = false;
+            case CurrentTime.Five:
                 break;
-            case CurrentTime.SixPM:
-                day = false;
-                dusk = true;
-                night = false;
+            case CurrentTime.Six:
                 break;
-            case CurrentTime.SevenPM:
-                day = false;
-                dusk = true;
-                night = false;
+            case CurrentTime.Seven:
                 break;
-            case CurrentTime.EightPM:
-                day = false;
-                dusk = false;
-                night = true;
+            case CurrentTime.Eight:
                 break;
-            case CurrentTime.NinePM:
-                day = false;
-                dusk = false;
-                night = true;
+            case CurrentTime.Nine:
                 break;
-            case CurrentTime.TenPM:
-                day = false;
-                dusk = false;
-                night = true;
+            case CurrentTime.Ten:
                 break;
-            case CurrentTime.ElevenPM:
-                day = false;
-                dusk = false;
-                night = true;
-                break;
-            case CurrentTime.Midnight: //this is specifically if we want to have some sort of animation to indicate a clock reset
-                day = false;
-                dusk = false;
-                night = true;
+            case CurrentTime.ResetHour:
                 break;
         }
-        clockText.text = hour.ToString();
+        clockText.text = currentHour.ToString();
     }
 
     // Update is called once per frame
