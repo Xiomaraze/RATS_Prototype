@@ -298,6 +298,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &341779087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 443673596503594638, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
+  m_PrefabInstance: {fileID: 840533799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &381391131
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +624,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1278180640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &575702327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6325250143289533424, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
+  m_PrefabInstance: {fileID: 840533799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &638763077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -805,6 +815,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3578036728318004057, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1379372768}
+    - target: {fileID: 3578036728318004057, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: XHoursLater
+      objectReference: {fileID: 0}
     - target: {fileID: 5700223057168392816, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
       propertyPath: m_Name
       value: UIPrefab
@@ -813,6 +831,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7882791882680370952, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1379372768}
+    - target: {fileID: 7882791882680370952, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: XHoursLater
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 520699542237737083, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
@@ -820,11 +846,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
---- !u!1 &840533800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5700223057168392816, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
-  m_PrefabInstance: {fileID: 840533799}
-  m_PrefabAsset: {fileID: 0}
 --- !u!223 &840533801 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 5641287989053423013, guid: 583fb959c37abb442990179d36f4a32d, type: 3}
@@ -1113,11 +1134,15 @@ PrefabInstance:
     - target: {fileID: 4549803140659897198, guid: 8b2f3f672caba21429f0983cae99ce71, type: 3}
       propertyPath: playerHUD
       value: 
-      objectReference: {fileID: 840533800}
+      objectReference: {fileID: 341779087}
     - target: {fileID: 4549803140659897198, guid: 8b2f3f672caba21429f0983cae99ce71, type: 3}
       propertyPath: tempNight
       value: 
       objectReference: {fileID: 638763078}
+    - target: {fileID: 4549803140659897198, guid: 8b2f3f672caba21429f0983cae99ce71, type: 3}
+      propertyPath: clockHUDObject
+      value: 
+      objectReference: {fileID: 341779087}
     - target: {fileID: 6963243472908515721, guid: 8b2f3f672caba21429f0983cae99ce71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 550
@@ -1307,6 +1332,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1379372767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4120135613957929276, guid: 8b2f3f672caba21429f0983cae99ce71, type: 3}
+  m_PrefabInstance: {fileID: 1030426402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1379372768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4549803140659897198, guid: 8b2f3f672caba21429f0983cae99ce71, type: 3}
+  m_PrefabInstance: {fileID: 1030426402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379372767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d145c02b810d439dc8d86d2e32d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1395869778
@@ -1525,6 +1566,7 @@ GameObject:
   - component: {fileID: 1537024932}
   - component: {fileID: 1537024935}
   - component: {fileID: 1537024936}
+  - component: {fileID: 1537024937}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -1607,9 +1649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1333958029}
-  timeController: {fileID: 0}
+  timeController: {fileID: 1379372767}
   textSpeed: 0.1
-  dialogueBox: {fileID: 0}
+  dialogueBox: {fileID: 575702327}
 --- !u!114 &1537024936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,6 +1666,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFloor: 0
   destinationTransform: {fileID: 693306148}
+--- !u!114 &1537024937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537024930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804c35fd693a8d747bd1fca6f0b21d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayEarlyLines:
+  - Hello.
+  - It is Early Day.
+  DayLateLines:
+  - Greetings.
+  - It is Late Day.
+  NightEarlyLines:
+  - Aloha.
+  - It is Early Night.
+  NightLateLines:
+  - Ciao.
+  - It is Late Night.
 --- !u!1 &1603267791
 GameObject:
   m_ObjectHideFlags: 0

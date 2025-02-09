@@ -105,40 +105,40 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    //public void StartDialogue() //this gets called through the player controller, after moving to a NPC
-    //{
-    //    Debug.Log("running");
-    //    lines.Clear();
-    //    dialogueBox.SetActive(true);
-    //    if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyDay)
-    //    {
-    //        lines = DayEarly;
-    //    }
-    //    else if (timeScript.WhatTimeIsIt() == DaySlot.hour.LateDay)
-    //    {
-    //        lines = DayLate;
-    //    }
-    //    else if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyNight)
-    //    {
-    //        lines = NightEarly;
-    //    }
-    //    else
-    //    {
-    //        lines = NightLate;
-    //    }
-    //    //resets the text
-    //    index = 0;
-    //    textComponent.text = string.Empty;
+    public void StartDialogue() //this gets called through the player controller, after moving to a NPC
+    {
+        Debug.Log("running");
+        lines.Clear();
+        dialogueBox.SetActive(true);
+        if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyDay)
+        {
+            lines = DayEarly;
+        }
+        else if (timeScript.WhatTimeIsIt() == DaySlot.hour.LateDay)
+        {
+            lines = DayLate;
+        }
+        else if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyNight)
+        {
+            lines = NightEarly;
+        }
+        else
+        {
+            lines = NightLate;
+        }
+        //resets the text
+        index = 0;
+        textComponent.text = string.Empty;
 
-    //    //turns on UI
-    //    dialogueBox.SetActive(true);
+        //turns on UI
+        dialogueBox.SetActive(true);
 
-    //    //sets player-state to 'talking' so they can't move during conversation
-    //    PlayerController.currentState = PlayerController.States.talking;
+        //sets player-state to 'talking' so they can't move during conversation
+        PlayerController.currentState = PlayerController.States.talking;
 
-    //    //types the first line
-    //    StartCoroutine(TypeLine());
-    //}
+        //types the first line
+        StartCoroutine(TypeLine());
+    }
 
     IEnumerator TypeLine() //types out each character
     {

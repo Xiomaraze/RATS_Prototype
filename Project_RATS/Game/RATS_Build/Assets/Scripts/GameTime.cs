@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameTime : MonoBehaviour
 {
-    public GameObject playerHUD;
+    public GameObject clockHUDObject;
     public Canvas canvas;
     TextMeshProUGUI clockText;
     CurrentTime currentHour;
@@ -19,7 +19,7 @@ public class GameTime : MonoBehaviour
     void Start()
     {
         currentHour = CurrentTime.Noon;
-        clockText = playerHUD.GetComponent<TextMeshProUGUI>();
+        clockText = clockHUDObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void XHoursLater(int hours)
