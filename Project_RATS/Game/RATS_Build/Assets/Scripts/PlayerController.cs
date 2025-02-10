@@ -26,11 +26,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(currentState);
         toDestination = clickDestination - transform.position; //gets direction towarfs end destination
 
         if(currentState == States.moving) //if the player is currently moving
         {
-            transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed); //move logic
+            transform.Translate((toDestination).normalized * Time.deltaTime * moveSpeed); //move logic fix missing deltaTime definitions
             if(toDestination.magnitude < .2f) //if reached the goal
             {
                 if(currentAction != null)

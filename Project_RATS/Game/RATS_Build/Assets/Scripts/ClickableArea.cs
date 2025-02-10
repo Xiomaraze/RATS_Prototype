@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class ClickableArea : MonoBehaviour
 {
@@ -28,23 +30,27 @@ public class ClickableArea : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(PlayerController.currentState == PlayerController.States.nothing)
-        { 
-            if (isFloor)
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            if (PlayerController.currentState == PlayerController.States.nothing)
             {
-                destinationPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-            }
-            else
-            {
-                destinationPos = destinationTransform.position;
-            }
+                if (isFloor)
+                {
+                    destinationPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+                }
+                else
+                {
+                    destinationPos = destinationTransform.position;
+                }
 
-            destinationPos.z = 0;
-            if(hasAction)
-            {
-                playerScript.MoveToAndAct(destinationPos, gameObject);
-            } else playerScript.MoveTo(destinationPos);
+                destinationPos.z = 0;
+                if (hasAction)
+                {
+                    playerScript.MoveToAndAct(destinationPos, gameObject);
+                }
+                else playerScript.MoveTo(destinationPos);
 
+            }
         }
     }
 }
