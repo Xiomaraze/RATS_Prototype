@@ -68,6 +68,7 @@ public class DialogueController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(timeScript.WhatTimeIsIt());
         if (Input.GetMouseButtonDown(0) && PlayerController.currentState != PlayerController.States.moving) //text only runs if the player is NOT MOVING!
         {
             if (lines.Count == 0)

@@ -15,6 +15,7 @@ public class GameTime : MonoBehaviour
 
 
     enum CurrentTime {Noon, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, ResetHour};
+
     // Start is called before the first frame update
     void Start()
     {

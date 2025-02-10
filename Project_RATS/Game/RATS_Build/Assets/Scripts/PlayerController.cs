@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(currentState);
         toDestination = clickDestination - transform.position; //gets direction towarfs end destination
 
         if(currentState == States.moving) //if the player is currently moving
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if(currentDialogue != null)
                 {
-                    //currentDialogue.StartDialogue(); //begin a conversation if it has one
+                    currentDialogue.StartDialogue(); //begin a conversation if it has one
                     currentState = States.talking; //switch player-state to 'talking'
                 }
                 else currentState = States.nothing; //if the goal is reached and there's nothing for the player to do, just set state back to regular
