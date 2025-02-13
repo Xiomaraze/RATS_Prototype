@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LoopTestScene.unity
-    guid: 9fe6a67373b83fb4781395aa88dd5339
+    path: Assets/Scenes/PlayerMovement.unity
+    guid: ea0ba21af473e284d92e217883466a9e
   m_configObjects: {}

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System;
 
 public class GameTime : MonoBehaviour
 {
@@ -10,7 +12,12 @@ public class GameTime : MonoBehaviour
     TextMeshProUGUI clockText;
     CurrentTime currentHour;
     public GameObject tempDay; //switches to night at 5 pm
+    public GameObject tempSunset;//switches to day at 10 pm
     public GameObject tempNight;//switches to day at 10 pm
+    public GameObject tempReset;//switches to day at 10 pm
+    [SerializeField] CurrentTime whenToSunset;
+    [SerializeField] CurrentTime whenToNight;
+
 
 
 
@@ -28,41 +35,48 @@ public class GameTime : MonoBehaviour
         switch (hours)
         {
             case 1:
-                if (currentHour == CurrentTime.Five)
-                {
-                    tempDay.SetActive(false);
-                    tempNight.SetActive(true);
-                }
-                else if (currentHour == CurrentTime.Ten)
-                {
-                    tempNight.SetActive(false);
-                    tempDay.SetActive(true);
-                }
                 currentHour = currentHour + 1;
                 break;
             case 4:
                 int passageHolder = 4;
-                if (currentHour == CurrentTime.Six)
-                {
-                    tempNight.SetActive(false);
-                    tempDay.SetActive(true);
-                    currentHour = CurrentTime.Noon;
-                    passageHolder = 0;
-                }
-                else if (currentHour > CurrentTime.Six) 
-                {
-                    int hoursLeft = 10;
-                    hoursLeft = hoursLeft - ((int)currentHour);
-                    passageHolder = passageHolder - hoursLeft;
-                    currentHour = CurrentTime.Noon;
-                }
-                else if (currentHour >= CurrentTime.Two)
-                {
-                    tempDay.SetActive(false);
-                    tempNight.SetActive(true);
-                }
+                //if (currentHour == CurrentTime.Six)
+                //{
+                //    currentHour = CurrentTime.Noon;
+                //    passageHolder = 0;
+                //}
+                //else if (currentHour > CurrentTime.Six) 
+                //{
+                //    int hoursLeft = 10;
+                //    hoursLeft = hoursLeft - ((int)currentHour);
+                //    passageHolder = passageHolder - hoursLeft;
+                //    currentHour = CurrentTime.Noon;
+                //}
                 currentHour += passageHolder;
                 break;
+        }
+
+        if(CurrentTime.Noon <= currentHour && currentHour < whenToSunset)
+        {
+            tempDay.SetActive(true);
+            tempNight.SetActive(false);
+            Debug.Log("activate first");
+        } 
+        else if(whenToSunset <= currentHour && currentHour < whenToNight)
+        {
+            tempDay.SetActive(false);
+            tempSunset.SetActive(true);
+            Debug.Log("activate second");
+        }
+        else if (whenToNight <= currentHour && currentHour < CurrentTime.ResetHour)
+        {
+            tempSunset.SetActive(false);
+            tempNight.SetActive(true);
+            Debug.Log("activate second");
+        }
+
+        if (currentHour >= CurrentTime.ResetHour)
+        {
+            StartCoroutine(ResetDay());
         }
     }
 
@@ -122,5 +136,13 @@ public class GameTime : MonoBehaviour
     void Update()
     {
         HourManagement();
+    }
+
+    IEnumerator ResetDay() //types out each character
+    {
+        tempReset.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
+        currentHour = CurrentTime.Noon;
     }
 }

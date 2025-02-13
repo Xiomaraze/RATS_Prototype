@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class DialogueController : MonoBehaviour
 {
@@ -68,30 +69,15 @@ public class DialogueController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(timeScript.WhatTimeIsIt());
-        if (Input.GetMouseButtonDown(0) && PlayerController.currentState != PlayerController.States.moving) //text only runs if the player is NOT MOVING!
+        //Debug.Log(timeScript.WhatTimeIsIt());
+        if (Input.GetMouseButtonDown(0) && PlayerController.currentState == PlayerController.States.talking && !EventSystem.current.IsPointerOverGameObject()) //text only runs if the player is NOT MOVING!
         {
-            if (lines.Count == 0)
-            {
-                if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyDay)
-                {
-                    lines = DayEarly;
-                }
-                else if (timeScript.WhatTimeIsIt() == DaySlot.hour.LateDay)
-                {
-                    lines = DayLate;
-                }
-                else if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyNight)
-                {
-                    lines = NightEarly;
-                }
-                else
-                {
-                    lines = NightLate;
-                }
-            }
-            else
-            {
+            //if (lines.Count == 0)
+            //{
+            //    StartDialogue();
+            //}
+            //else
+            //{
                 if (textComponent.text == lines[index])
                 {
                     dialogueBox.SetActive(true);
@@ -102,7 +88,7 @@ public class DialogueController : MonoBehaviour
                     StopAllCoroutines();
                     textComponent.text = lines[index];
                 }
-            }
+            //}
         }
     }
 
@@ -142,7 +128,7 @@ public class DialogueController : MonoBehaviour
 
     IEnumerator TypeLine() //types out each character
     {
-        Debug.Log(index);
+        //Debug.Log(index);
         foreach(char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
