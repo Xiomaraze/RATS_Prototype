@@ -28,7 +28,7 @@ public class DialogueController : MonoBehaviour
     void Start()
     {
         //changing this to an explicit call in the editor - allie
-        //dialogueBox = GameObject.Find("DialogueBox"); //gets reference to UI by name
+        //dialogueBox = GameObject.Find("DialogueBox"); //gets reference to UI by NPCName
 
         dialogueArray = GetComponent<DialogueLineTimeArray>();
         dialogueBox.SetActive(false); //turn off dialogue box to start
@@ -43,7 +43,6 @@ public class DialogueController : MonoBehaviour
         for (int i = 0; i < dialogueArray.DayEarlyLines.Count; i++)
         {
             DayEarly.Add(dialogueArray.DayEarlyLines[i]);
-            //DayEarly[i] = dialogueArray.DayEarlyLines[i];
         }
         for (int i = 0; i < dialogueArray.DayLateLines.Count; i++)
         {
@@ -72,13 +71,7 @@ public class DialogueController : MonoBehaviour
         //Debug.Log(timeScript.WhatTimeIsIt());
         if (Input.GetMouseButtonDown(0) && PlayerController.currentState == PlayerController.States.talking && !EventSystem.current.IsPointerOverGameObject()) //text only runs if the player is NOT MOVING!
         {
-            //if (lines.Count == 0)
-            //{
-            //    StartDialogue();
-            //}
-            //else
-            //{
-                if (textComponent.text == lines[index])
+                if (textComponent.text == dialogueArray.NPCName + ": " + lines[index])
                 {
                     dialogueBox.SetActive(true);
                     NextLine();
@@ -86,14 +79,14 @@ public class DialogueController : MonoBehaviour
                 else
                 {
                     StopAllCoroutines();
-                    textComponent.text = lines[index];
+                    textComponent.text = dialogueArray.NPCName + ": " + lines[index];
                 }
-            //}
         }
     }
 
     public void StartDialogue() //this gets called through the player controller, after moving to a NPC
     {
+
         lines.Clear();
         dialogueBox.SetActive(true);
         if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyDay)
@@ -114,7 +107,7 @@ public class DialogueController : MonoBehaviour
         }
         //resets the text
         index = 0;
-        textComponent.text = string.Empty;
+        textComponent.text = dialogueArray.NPCName + ": ";
 
         //turns on UI
         dialogueBox.SetActive(true);
@@ -138,29 +131,10 @@ public class DialogueController : MonoBehaviour
 
     void NextLine() //moves to next line or ends convo if no more lines are available
     {
-        if (index == 0)
-        {
-            if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyDay)
-            {
-                lines = DayEarly;
-            }
-            else if (timeScript.WhatTimeIsIt() == DaySlot.hour.LateDay)
-            {
-                lines = DayLate;
-            }
-            else if (timeScript.WhatTimeIsIt() == DaySlot.hour.EarlyNight)
-            {
-                lines = NightEarly;
-            }
-            else
-            {
-                lines = NightLate;
-            }
-        }
         if (index < lines.Count - 1)
         {
             index++;
-            textComponent.text = string.Empty;
+            textComponent.text = dialogueArray.NPCName + ": ";
             StartCoroutine(TypeLine());
             dialogueBox.SetActive(true);
         }

@@ -47,7 +47,7 @@ Shader "TextMeshPro/Sprite"
 
 		Pass
 		{
-            Name "Default"
+            NPCName "Default"
 		CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag

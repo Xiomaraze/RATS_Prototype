@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 [SerializableAttribute]
 public class DialogueLineTimeArray : MonoBehaviour //ScriptableObject 
 {
+    public string NPCName;
     public List<string> DayEarlyLines;
     public List<string> DayLateLines;
     public List<string> NightEarlyLines;
