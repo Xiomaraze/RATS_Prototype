@@ -17,6 +17,9 @@ public class DialogueController : MonoBehaviour
     public GameObject timeController;
     GameTime timeScript;
     List<string> lines;
+
+    [SerializeField] bool includeName;
+    private string withName;
     
     //public string[] lines; //these are the actual lines of dialogue displayed on-screen (assign through inspector)
     public float textSpeed; //intervals in seconds between each character displayed
@@ -63,6 +66,10 @@ public class DialogueController : MonoBehaviour
         else
         {
             dialogueArray = gameObject.GetComponent<DialogueLineTimeArray>();
+            if(includeName == true)
+            {
+                withName = dialogueArray.NPCName + ": ";
+            } else withName = string.Empty;
         }
     }
 
@@ -71,7 +78,7 @@ public class DialogueController : MonoBehaviour
         //Debug.Log(timeScript.WhatTimeIsIt());
         if (Input.GetMouseButtonDown(0) && PlayerController.currentState == PlayerController.States.talking && !EventSystem.current.IsPointerOverGameObject()) //text only runs if the player is NOT MOVING!
         {
-                if (textComponent.text == dialogueArray.NPCName + ": " + lines[index])
+                if (textComponent.text == withName + lines[index])
                 {
                     dialogueBox.SetActive(true);
                     NextLine();
@@ -79,7 +86,7 @@ public class DialogueController : MonoBehaviour
                 else
                 {
                     StopAllCoroutines();
-                    textComponent.text = dialogueArray.NPCName + ": " + lines[index];
+                    textComponent.text = withName + lines[index];
                 }
         }
     }
@@ -107,7 +114,7 @@ public class DialogueController : MonoBehaviour
         }
         //resets the text
         index = 0;
-        textComponent.text = dialogueArray.NPCName + ": ";
+        textComponent.text = withName;
 
         //turns on UI
         dialogueBox.SetActive(true);
@@ -134,7 +141,7 @@ public class DialogueController : MonoBehaviour
         if (index < lines.Count - 1)
         {
             index++;
-            textComponent.text = dialogueArray.NPCName + ": ";
+            textComponent.text = withName;
             StartCoroutine(TypeLine());
             dialogueBox.SetActive(true);
         }
