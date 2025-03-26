@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class SafeLock : MonoBehaviour
 {
+    public GameObject ones;
+    SafeDigit onesCode;
+    public GameObject tens;
+    SafeDigit tensCode;
+    public GameObject hundreds;
+    SafeDigit hundredsCode;
+    public GameObject thousands;
+    SafeDigit thousandsCode;
+    
     int digitOne;
     int digitTwo;
     int digitThree;
@@ -20,6 +29,10 @@ public class SafeLock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        thousandsCode = thousands.GetComponent<SafeDigit>();
+        hundredsCode = hundreds.GetComponent<SafeDigit>();
+        tensCode = tens.GetComponent<SafeDigit>();
+        onesCode = ones.GetComponent<SafeDigit>();
         currentTime = Time.unscaledTime;
         
         float holder = combination;
@@ -69,39 +82,17 @@ public class SafeLock : MonoBehaviour
 
     }
 
-    //increase assumes that when true, the player is trying to increase the number on the safe, i.e. 1 to 2, or 9 to 0
-    //it also assumes that when false, the player is trying to decrease the number on the safe, i.e. 9 to 8, or 0 to 9
-    public int DigitSpin(int digit, bool increase) 
+    public void ComboChange()
     {
         currentTime = Time.unscaledTime;
-        if (increase == true)
-        {
-            if (digit == 9)
-            {
-                return 0;
-            }
-            else
-            {
-                digit++;
-                return digit;
-            }
-        }
-        else
-        {
-            if (digit == 0)
-            {
-                return 9;
-            }
-            else
-            {
-                digit--;
-                return digit;
-            }
-        }
+        digitOne = thousandsCode.currentDigit;
+        digitTwo = hundredsCode.currentDigit;
+        digitThree = tensCode.currentDigit;
+        digitFour = onesCode.currentDigit;
     }
 
     //specifically checks the time since the digit change made on the safe
-    public bool ComboSubmitted(int first, int second, int third, int fourth) //this will only return true when all the digits input are correct and the anti brute time has passed
+    public bool TickPass(int first, int second, int third, int fourth) //this will only return true when all the digits input are correct and the anti brute time has passed
     {
         if (first == comboOne)
         {
