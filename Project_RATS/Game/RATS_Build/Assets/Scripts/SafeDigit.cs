@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+//this exclusively handles the individual digit displays on the safe, to modify combinations or images used, look at the buttons, or the safe itself
+
 public class SafeDigit : MonoBehaviour
 {
     public GameObject textObject;

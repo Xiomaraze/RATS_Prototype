@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+//this script handles the input of the code and checking if the inputed code is correct
+//to run a simple check if it's locked, look at the locked variable
 
 public class SafeLock : MonoBehaviour
 {
@@ -12,6 +16,10 @@ public class SafeLock : MonoBehaviour
     SafeDigit hundredsCode;
     public GameObject thousands;
     SafeDigit thousandsCode;
+
+    bool locked = true;
+    public GameObject lightObj;
+    Image lightSprite;
     
     int digitOne;
     int digitTwo;
@@ -33,6 +41,8 @@ public class SafeLock : MonoBehaviour
         hundredsCode = hundreds.GetComponent<SafeDigit>();
         tensCode = tens.GetComponent<SafeDigit>();
         onesCode = ones.GetComponent<SafeDigit>();
+        lightSprite = lightObj.GetComponent<Image>();
+        lightSprite.color = Color.red;
         currentTime = Time.unscaledTime;
         
         float holder = combination;
@@ -77,9 +87,13 @@ public class SafeLock : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //all update does is check if the tickpass returns true each frame
     {
-
+        if (TickPass(digitOne, digitTwo, digitThree, digitFour))
+        {
+            locked = false;
+            lightSprite.color = Color.green;
+        }
     }
 
     public void ComboChange()
